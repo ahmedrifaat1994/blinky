@@ -1,0 +1,115 @@
+#ifndef TIMER_H
+#define TIMER_H
+/***********************************************************************
+* FILE DESCRITION
+* --------------------------------------------------------------------*/
+/**          \file Timer.h
+*           \brief Timer Driver
+*
+*         \details
+*
+***********************************************************************/
+
+
+/***********************************************************************
+* INCLUDES
+***********************************************************************/
+
+/***********************************************************************
+* GLOBAL CONSTANT MACROS
+***********************************************************************/
+#define Gpt_ValueType         unsigned long
+#define Gpt_PrescalerType     unsigned short
+/***********************************************************************
+* GLOBAL FUNCTION MACROS
+***********************************************************************/
+
+
+/***********************************************************************
+* GLOBAL DATA TYPES & STRUCTURES
+***********************************************************************/
+typedef enum{
+	GPT_CH_MODE_CONTINUOUSE,
+	GPT_CH_MODE_ONESHOT
+}Gpt_ModeType;
+
+typedef enum{
+	DISABLE,
+	ENABLE
+}Gpt_InterruptStatusType;
+
+typedef struct{
+	Gpt_PrescalerType               GptPrescaler;
+	Gpt_ModeType                    Mode;
+	Gpt_InterruptStatusType         InterruptStatus;
+}Gpt_ConfigType;
+
+/***********************************************************************
+* GLOBAL DATA PROTOTYPES
+***********************************************************************/
+
+
+/***********************************************************************
+* GLOBAL FUNCTIONS PROTOTYPES
+***********************************************************************/
+
+/******************************************************
+* \Syntax          : void Gpt_Init(const Gpt_ConfigType* ConfigPtr)
+* \Discription     : initialize the timer
+*
+* \Sync\Async      : 
+* \Reentrancy      : 
+* \Parameters (in) : ConfigPtr
+* \Parameters (out): None
+* \Return value    : None
+******************************************************/
+void Gpt_Init(const Gpt_ConfigType* ConfigPtr);
+/******************************************************
+* \Syntax          : void Gpt_StartTimer(Gpt_ValueType Value)
+* \Discription     : Starts the timer
+*
+* \Sync\Async      : 
+* \Reentrancy      : Reentrant
+* \Parameters (in) : Value
+* \Parameters (out): None
+* \Return value    : None
+******************************************************/
+void Gpt_StartTimer(Gpt_ValueType Value);
+/******************************************************
+* \Syntax          : void Gpt_StopTimer(void)
+* \Discription     : Stops the timer
+*
+* \Sync\Async      : 
+* \Reentrancy      : Reentrant
+* \Parameters (in) : None
+* \Parameters (out): None
+* \Return value    : None
+******************************************************/
+void Gpt_StopTimer(void);
+/******************************************************
+* \Syntax          : unsigned long Gpt_ReadFlag(void)
+* \Discription     : Reads Interrupt Flag
+*
+* \Sync\Async      : Sync
+* \Reentrancy      : Reentrant
+* \Parameters (in) : None
+* \Parameters (out): None
+* \Return value    : unsigned long
+******************************************************/
+unsigned long Gpt_ReadFlag(void);
+/******************************************************
+* \Syntax          : void Gpt_StopTimer(void)
+* \Discription     : Stops the timer
+*
+* \Sync\Async      : 
+* \Reentrancy      : Reentrant
+* \Parameters (in) : None
+* \Parameters (out): None
+* \Return value    : None
+******************************************************/
+void Gpt_ClearFlag(void);
+#endif
+
+/***********************************************************************
+* END OF FILE: Timer.h
+***********************************************************************/
